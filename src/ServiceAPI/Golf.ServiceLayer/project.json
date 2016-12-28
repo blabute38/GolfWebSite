@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Golf.Repository": "1.0.0-*"
+  },
+
+  "frameworks": {
+    "net461": {
+    }
+  }
+}
