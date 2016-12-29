@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Golf.Repository")]
+[assembly: AssemblyTitle("Golf.ServiceLayer.Dto")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Golf.Repository")]
+[assembly: AssemblyProduct("Golf.ServiceLayer.Dto")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8ac70a69-da89-4489-94a3-e405f4066503")]
+[assembly: Guid("ec80ac43-3ad8-483e-93cb-57a287e5d3fc")]
 
 // Version information for an assembly consists of the following four values:
 //
