@@ -1,27 +1,34 @@
-﻿using Golf.Model.Mapping;
-using Golf.Model.Interfaces;
+﻿using Golf.Model.Interfaces;
 using System;
 using System.Linq;
-using System.Threading;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace Golf.Model.DbContexts
 {
     public class GolferContext : DbContext
     {
-        public GolferContext() : base("GolfingModel")
-        {
-        }
-
-        public GolferContext(string connectionString) :base(connectionString)
+        public GolferContext(DbContextOptions<GolferContext> options)
+            : base(options)
         {
         }
 
         public DbSet<Golfer> Golfers { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new GolferConfiguration());
+            modelBuilder.Entity<Golfer>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+
+                entity.Property(x => x.FirstName)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(x => x.LastName)
+                    .IsRequired()
+                    .HasMaxLength(20);
+            });
         }
 
         public override int SaveChanges()
@@ -35,7 +42,7 @@ namespace Golf.Model.DbContexts
                 IAuditableEntity entity = entry.Entity as IAuditableEntity;
                 if (entity != null)
                 {
-                    string identityName = Thread.CurrentPrincipal.Identity.Name;
+                    string identityName = ClaimsPrincipal.Current.Identity.Name;
                     DateTime now = DateTime.UtcNow;
 
                     if (entry.State == EntityState.Added)

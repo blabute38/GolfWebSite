@@ -8,7 +8,7 @@ namespace Golf.RESTService.DependencyInjection
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(Assembly.Load("Golf.Repository"))
+            builder.RegisterAssemblyTypes(Assembly.Load(new AssemblyName("Golf.Repository")))
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();

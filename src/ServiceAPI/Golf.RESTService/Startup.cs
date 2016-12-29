@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Golf.RESTService.DependencyInjection;
 using Autofac;
+using Golf.RESTService.DependencyInjection;
 using Autofac.Extensions.DependencyInjection;
-using Golf.Model.DbContexts;
+using Golf.RESTService.Configuration;
 
 namespace Golf.RESTService
 {
@@ -24,28 +21,29 @@ namespace Golf.RESTService
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            AutoMapperConfiguration.Configure();
         }
 
         public IConfigurationRoot Configuration { get; }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
+        //public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton(serviceType => Configuration);
-            services.AddSingleton(Configuration);
 
-            // Create the Autofac container builder.
+            //Create the Autofac container builder.
             var builder = new ContainerBuilder();
 
-            // Add any Autofac modules or registrations.
+            //Add any Autofac modules or registrations.
             builder.RegisterModule(new RepositoryModule());
             builder.RegisterModule(new ServiceLayerModule());
             builder.RegisterModule(new EFModelModule());
 
-            // Populate the services.
+            //Populate the services.
             builder.Populate(services);
 
-            // Build the container.
+            //Build the container.
             var container = builder.Build();
 
             return container.Resolve<IServiceProvider>();

@@ -1,8 +1,9 @@
 ﻿using Golf.Model.Models;
 using Golf.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace Golf.Repository.Implementations
@@ -11,10 +12,15 @@ namespace Golf.Repository.Implementations
       where T : BaseEntity
     {
         protected DbContext _dbContext;
-        protected readonly IDbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
 
         public GenericRepository(DbContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
             _dbContext = context;
             _dbSet = context.Set<T>();
         }
@@ -30,12 +36,12 @@ namespace Golf.Repository.Implementations
             return query;
         }
 
-        public virtual T Add(T entity)
+        public virtual EntityEntry<T> Add(T entity)
         {
             return _dbSet.Add(entity);
         }
 
-        public virtual T Delete(T entity)
+        public virtual EntityEntry<T> Delete(T entity)
         {
             return _dbSet.Remove(entity);
         }

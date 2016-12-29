@@ -7,7 +7,7 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>c9b5e787-6ccc-45a7-a92d-32fef98c96de</ProjectGuid>
+    <ProjectGuid>2415987f-8ba4-486f-838d-5b8a7530b437</ProjectGuid>
     <RootNamespace>Golf.Global</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>

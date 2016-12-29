@@ -1,6 +1,6 @@
 ﻿using Golf.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Data.Entity;
 
 namespace Golf.Repository.Implementations
 {
