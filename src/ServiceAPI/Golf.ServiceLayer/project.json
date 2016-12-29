@@ -2,11 +2,14 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Golf.Repository": "1.0.0-*"
+    "Golf.Repository": "1.0.0-*",
+    "Golf.ServiceLayer.Dto": "1.0.0-*",
+    "NETStandard.Library": "1.6.1"
   },
 
   "frameworks": {
-    "net461": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
     }
   }
 }

@@ -21,7 +21,7 @@ namespace Golf.ServiceLayer.Implementations
         {
             if (entity == null)
             {
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
             }
             _repository.Add(entity);
             _unitOfWork.Commit();
@@ -29,14 +29,20 @@ namespace Golf.ServiceLayer.Implementations
 
         public virtual void Update(T entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
             _repository.Edit(entity);
             _unitOfWork.Commit();
         }
 
         public virtual void Delete(T entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
             _repository.Delete(entity);
             _unitOfWork.Commit();
         }

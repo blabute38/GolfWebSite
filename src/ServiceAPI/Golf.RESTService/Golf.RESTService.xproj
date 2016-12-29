@@ -6,7 +6,7 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>ad5030db-8d92-4953-9425-dabaa63c1da7</ProjectGuid>
+    <ProjectGuid>e1bc118b-0fbe-40f3-bc96-f8bac4af3470</ProjectGuid>
     <RootNamespace>Golf.RESTService</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
