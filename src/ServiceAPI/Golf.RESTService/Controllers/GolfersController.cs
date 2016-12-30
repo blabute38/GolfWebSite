@@ -5,6 +5,7 @@ using System.Web.Http;
 using System;
 using Golf.ServiceLayer.Dto.Implementations;
 using AutoMapper;
+using System.Net.Http;
 
 namespace Golf.RESTService.Controllers
 {
@@ -36,30 +37,30 @@ namespace Golf.RESTService.Controllers
         }
 
         // POST api/golfers
-        public void Post([FromBody]GolferDto golferDto)
+        public HttpResponseMessage Post([FromBody]GolferDto golferDto)
         {
             var golfer = Mapper.Map<Golfer>(golferDto);
 
-            _golferService.Create(golfer);
+            return _golferService.Create(golfer);
         }
 
         // PUT api/golfers/5
-        public void Put(int id, [FromBody]GolferDto golfer)
+        public HttpResponseMessage Put(int id, [FromBody]GolferDto golfer)
         {
             var golferToUpdate = _golferService.GetById(id);
 
             golferToUpdate = Mapper.Map(golfer, golferToUpdate);
             golferToUpdate.Id = id;
 
-            _golferService.Update(golferToUpdate);
+            return _golferService.Update(golferToUpdate);
         }
 
         // DELETE api/golfers/5
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
             var golferToDelete = _golferService.GetById(id);
 
-            _golferService.Delete(golferToDelete);
+            return _golferService.Delete(golferToDelete);
         }
     }
 }

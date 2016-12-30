@@ -9,8 +9,6 @@ namespace Golf.RESTService.DependencyInjection
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterModule(new RepositoryModule());
-
             builder.RegisterType(typeof(GolferContext)).As(typeof(DbContext)).InstancePerLifetimeScope();
             builder.RegisterType(typeof(UnitOfWork)).As(typeof(Repository.Interfaces.IUnitOfWork)).InstancePerLifetimeScope();
         }

@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
+using Golf.RESTService.Configuration;
 using Golf.RESTService.DependencyInjection;
 using System.Reflection;
 using System.Web;
@@ -11,6 +12,9 @@ namespace Golf.RESTService
     {
         protected void Application_Start()
         {
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            AutoMapperConfiguration.Configure();
+
             var builder = new ContainerBuilder();
 
             // Get your HttpConfiguration.
@@ -19,10 +23,10 @@ namespace Golf.RESTService
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            //// OPTIONAL: Register the Autofac filter provider.
-            //builder.RegisterWebApiFilterProvider(config);
+            // OPTIONAL: Register the Autofac filter provider.
+            builder.RegisterWebApiFilterProvider(config);
 
-            //Add any Autofac modules or registrations.
+            // Add any Autofac modules or registrations.
             builder.RegisterModule(new RepositoryModule());
             builder.RegisterModule(new ServiceLayerModule());
             builder.RegisterModule(new EFModelModule());

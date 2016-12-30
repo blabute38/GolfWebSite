@@ -2,7 +2,7 @@
 using Golf.Model;
 using Golf.ServiceLayer.Dto.Implementations;
 
-namespace Golf.RESTService.App_Start
+namespace Golf.RESTService.Configuration
 {
     public static class AutoMapperConfiguration
     {
