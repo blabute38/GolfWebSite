@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,12 +48,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DependencyInjection\GolfRESTServiceClientModule.cs" />
+    <Compile Include="Implementations\Generic\RetrieveEntity.cs" />
+    <Compile Include="Implementations\Golfers\RetrieveGolfer.cs" />
+    <Compile Include="Interfaces\ICreateEntity.cs" />
+    <Compile Include="Interfaces\IDeleteEntity.cs" />
+    <Compile Include="Interfaces\IRetrieveEntity.cs" />
+    <Compile Include="Interfaces\IUpdateEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Implementations\" />
-    <Folder Include="Interfaces\" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DataAPI\Golf.Model\Golf.Model.csproj">
+      <Project>{293B3BA1-54BA-4DD3-B080-935C29EB6CAD}</Project>
+      <Name>Golf.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GlobalAPI\Golf.Global\Golf.Global.csproj">
+      <Project>{C01FDC34-3F12-4DF6-9A04-B8C70ED14165}</Project>
+      <Name>Golf.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Golf.ServiceLayer.Dto\Golf.ServiceLayer.Dto.csproj">
+      <Project>{EC80AC43-3AD8-483E-93CB-57A287E5D3FC}</Project>
+      <Name>Golf.ServiceLayer.Dto</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -6,6 +6,7 @@ using System;
 using Golf.ServiceLayer.Dto.Implementations;
 using AutoMapper;
 using System.Net.Http;
+using System.Web.Http.Results;
 
 namespace Golf.RESTService.Controllers
 {
@@ -29,11 +30,11 @@ namespace Golf.RESTService.Controllers
             return Mapper.Map<IEnumerable<GolferDto>>(golfers);
         }
 
-        public GolferDto Get(int id)
+        public JsonResult<GolferDto> Get(int id)
         {
             var golfer = _golferService.GetById(id);
 
-            return Mapper.Map<GolferDto>(golfer);
+            return Json(Mapper.Map<GolferDto>(golfer));
         }
 
         // POST api/golfers

@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
+using Golf.Model.DependencyInjection;
+using Golf.Repository.DependencyInjection;
 using Golf.RESTService.Configuration;
-using Golf.RESTService.DependencyInjection;
+using Golf.ServiceLayer.DependencyInjection;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
@@ -27,9 +29,9 @@ namespace Golf.RESTService
             builder.RegisterWebApiFilterProvider(config);
 
             // Add any Autofac modules or registrations.
-            builder.RegisterModule(new RepositoryModule());
-            builder.RegisterModule(new ServiceLayerModule());
-            builder.RegisterModule(new EFModelModule());
+            builder.RegisterModule(new GolfRepositoryModule());
+            builder.RegisterModule(new GolfServiceLayerModule());
+            builder.RegisterModule(new GolfModelModule());
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();

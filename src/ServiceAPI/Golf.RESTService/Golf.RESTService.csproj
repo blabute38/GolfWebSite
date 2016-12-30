@@ -109,9 +109,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Configuration\AutoMapperConfiguration.cs" />
     <Compile Include="Controllers\GolfersController.cs" />
-    <Compile Include="DependencyInjection\EFModelModule.cs" />
-    <Compile Include="DependencyInjection\RepositoryModule.cs" />
-    <Compile Include="DependencyInjection\ServiceLayerModule.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

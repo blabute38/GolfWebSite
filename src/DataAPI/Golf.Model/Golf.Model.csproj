@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbContexts\GolferContext.cs" />
+    <Compile Include="DependencyInjection\GolfModelModule.cs" />
     <Compile Include="Interfaces\IAuditableEntity.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="ModelConfiguration\AuditableEntity.Configuration.cs" />
