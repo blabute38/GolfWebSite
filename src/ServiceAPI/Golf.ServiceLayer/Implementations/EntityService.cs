@@ -3,8 +3,6 @@ using Golf.Repository.Interfaces;
 using Golf.ServiceLayer.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
 
 namespace Golf.ServiceLayer.Implementations
 {
@@ -19,7 +17,7 @@ namespace Golf.ServiceLayer.Implementations
             _repository = repository;
         }
 
-        public virtual HttpResponseMessage Create(T entity)
+        public virtual void Create(T entity)
         {
             if (entity == null)
             {
@@ -27,26 +25,26 @@ namespace Golf.ServiceLayer.Implementations
             }
             _repository.Add(entity);
             _unitOfWork.Commit();
-
-            return new HttpResponseMessage(HttpStatusCode.Created);
         }
 
-        public virtual HttpResponseMessage Update(T entity)
+        public virtual void Update(T entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
             _repository.Edit(entity);
             _unitOfWork.Commit();
-
-            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
-        public virtual HttpResponseMessage Delete(T entity)
+        public virtual void Delete(T entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
             _repository.Delete(entity);
             _unitOfWork.Commit();
-
-            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         public virtual IEnumerable<T> GetAll()

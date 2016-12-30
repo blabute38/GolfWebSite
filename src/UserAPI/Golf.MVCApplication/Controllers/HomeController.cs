@@ -24,7 +24,7 @@ namespace Golf.MVCApplication.Controllers
         {
             var golfers = await _retrieveEntity.GetEntitiesAsync();
 
-            return View(test);
+            return View(golfers);
         }
 
         public ActionResult About()

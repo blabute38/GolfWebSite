@@ -7,6 +7,9 @@ using Golf.ServiceLayer.Dto.Implementations;
 using AutoMapper;
 using System.Net.Http;
 using System.Web.Http.Results;
+using Newtonsoft.Json;
+using System.Text;
+using System.Net;
 
 namespace Golf.RESTService.Controllers
 {
@@ -23,18 +26,22 @@ namespace Golf.RESTService.Controllers
             _golferService = golferService;
         }
 
-        public IEnumerable<GolferDto> Get()
+        public JsonResult<IEnumerable<GolferDto>> Get()
         {
             var golfers = _golferService.GetAll();
 
-            return Mapper.Map<IEnumerable<GolferDto>>(golfers);
+            return Json(
+                Mapper.Map<IEnumerable<GolferDto>>(golfers),
+                new JsonSerializerSettings(),
+                Encoding.UTF8
+            );
         }
 
         public JsonResult<GolferDto> Get(int id)
         {
             var golfer = _golferService.GetById(id);
 
-            return Json(Mapper.Map<GolferDto>(golfer));
+            return Json(Mapper.Map<GolferDto>(golfer), new JsonSerializerSettings(), Encoding.UTF8);
         }
 
         // POST api/golfers
@@ -42,7 +49,9 @@ namespace Golf.RESTService.Controllers
         {
             var golfer = Mapper.Map<Golfer>(golferDto);
 
-            return _golferService.Create(golfer);
+            _golferService.Create(golfer);
+
+            return new HttpResponseMessage(HttpStatusCode.Created);
         }
 
         // PUT api/golfers/5
@@ -53,7 +62,9 @@ namespace Golf.RESTService.Controllers
             golferToUpdate = Mapper.Map(golfer, golferToUpdate);
             golferToUpdate.Id = id;
 
-            return _golferService.Update(golferToUpdate);
+            _golferService.Update(golferToUpdate);
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         // DELETE api/golfers/5
@@ -61,7 +72,9 @@ namespace Golf.RESTService.Controllers
         {
             var golferToDelete = _golferService.GetById(id);
 
-            return _golferService.Delete(golferToDelete);
+            _golferService.Delete(golferToDelete);
+
+            return new HttpResponseMessage(HttpStatusCode.NoContent);
         }
     }
 }

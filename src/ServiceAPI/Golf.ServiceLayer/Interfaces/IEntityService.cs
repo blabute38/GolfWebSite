@@ -7,9 +7,9 @@ namespace Golf.ServiceLayer.Interfaces
     public interface IEntityService<T> : IService
         where T : BaseEntity
     {
-        HttpResponseMessage Create(T entity);
-        HttpResponseMessage Delete(T entity);
+        void Create(T entity);
+        void Delete(T entity);
         IEnumerable<T> GetAll();
-        HttpResponseMessage Update(T entity);
+        void Update(T entity);
     }
 }
