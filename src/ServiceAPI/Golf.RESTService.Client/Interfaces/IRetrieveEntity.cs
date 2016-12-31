@@ -5,7 +5,7 @@ namespace Golf.RESTService.Client.Interfaces
 {
     public interface IRetrieveEntity<T>
     {
-        Task<T> GetEntityAsync();
-        Task<List<T>> GetEntitiesAsync();
+        Task<T> RetrieveEntityAsync(int id);
+        Task<IEnumerable<T>> RetrieveEntitiesAsync();
     }
 }

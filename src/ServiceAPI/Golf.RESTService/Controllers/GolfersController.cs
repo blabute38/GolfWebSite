@@ -55,7 +55,7 @@ namespace Golf.RESTService.Controllers
         }
 
         // PUT api/golfers/5
-        public HttpResponseMessage Put(int id, [FromBody]GolferDto golfer)
+        public JsonResult<GolferDto> Put(int id, [FromBody]GolferDto golfer)
         {
             var golferToUpdate = _golferService.GetById(id);
 
@@ -64,7 +64,7 @@ namespace Golf.RESTService.Controllers
 
             _golferService.Update(golferToUpdate);
 
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return Json(Mapper.Map<GolferDto>(golferToUpdate), new JsonSerializerSettings(), Encoding.UTF8);
         }
 
         // DELETE api/golfers/5

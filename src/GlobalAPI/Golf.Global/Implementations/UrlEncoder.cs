@@ -9,6 +9,11 @@ namespace Golf.Global.Implementations
     {
         private StringBuilder _url;
 
+        public UrlEncoder()
+        {
+            _url = new StringBuilder();
+        }
+
         public UrlEncoder(string url)
         {
             if (string.IsNullOrWhiteSpace(url))
@@ -18,7 +23,28 @@ namespace Golf.Global.Implementations
 
             if (url.EndsWith("/"))
                 url.TrimEnd('/');
-            _url = new StringBuilder($"{url}?");
+
+            _url = new StringBuilder(url);
+        }
+
+        public UrlEncoder AddPath(string param)
+        {
+            if (string.IsNullOrWhiteSpace(param))
+            {
+                throw new ArgumentNullException(nameof(param));
+            }
+
+            if (!_url.EndsWith("/"))
+                _url.Append("/");
+
+            _url.Append($"{param}");
+
+            return this;
+        }
+
+        public UrlEncoder AddPath(int param)
+        {
+            return AddPath(param.ToString());
         }
 
         public UrlEncoder AddToQueryString(string param, string value)
@@ -30,6 +56,11 @@ namespace Golf.Global.Implementations
             if (string.IsNullOrWhiteSpace(value))
             {
                 throw new ArgumentNullException(nameof(value));
+            }
+
+            if (!_url.EndsWith("&") && !_url.EndsWith("?"))
+            {
+                _url.Append("?");
             }
 
             _url.Append($"{param}=");

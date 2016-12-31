@@ -1,5 +1,6 @@
 ﻿using Golf.Global.Implementations;
 using Golf.Model.Models;
+using System;
 
 namespace Golf.Model
 {
@@ -7,7 +8,7 @@ namespace Golf.Model
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        //public Class Class { get; set; }
-        //public DateTime? Birthdate { get; set; }
+        public Class Class { get; set; }
+        public DateTime? Birthdate { get; set; }
     }
 }

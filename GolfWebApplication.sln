@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Golf.RESTService.Client", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Golf.MVCApplication", "src\UserAPI\Golf.MVCApplication\Golf.MVCApplication.csproj", "{54538169-DC77-493F-B95F-1E00FF1618CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Golf.ViewModels", "src\UserAPI\Golf.ViewModels\Golf.ViewModels.csproj", "{63709949-3108-4C78-8C2A-CBC835155148}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{54538169-DC77-493F-B95F-1E00FF1618CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54538169-DC77-493F-B95F-1E00FF1618CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54538169-DC77-493F-B95F-1E00FF1618CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63709949-3108-4C78-8C2A-CBC835155148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63709949-3108-4C78-8C2A-CBC835155148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63709949-3108-4C78-8C2A-CBC835155148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63709949-3108-4C78-8C2A-CBC835155148}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,5 +90,6 @@ Global
 		{EF849B3D-6F49-4BC4-A42E-A34D0BB624ED} = {8ADE91E9-3CCA-4D49-9C17-28F8143E0BD0}
 		{DB3F949D-1666-405D-8F39-61D987755CA1} = {8ADE91E9-3CCA-4D49-9C17-28F8143E0BD0}
 		{54538169-DC77-493F-B95F-1E00FF1618CF} = {A81E2D6F-21EA-4AB3-9966-BF0D865CF164}
+		{63709949-3108-4C78-8C2A-CBC835155148} = {A81E2D6F-21EA-4AB3-9966-BF0D865CF164}
 	EndGlobalSection
 EndGlobal

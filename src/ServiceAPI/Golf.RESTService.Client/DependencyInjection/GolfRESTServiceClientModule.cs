@@ -1,9 +1,7 @@
 ﻿using Autofac;
-using Golf.RESTService.Client.Implementations.Generic;
 using Golf.RESTService.Client.Implementations.Golfers;
 using Golf.RESTService.Client.Interfaces;
 using System.Net.Http;
-using System.Net.Http.Headers;
 
 namespace Golf.RESTService.Client.DependencyInjection
 {
@@ -11,14 +9,11 @@ namespace Golf.RESTService.Client.DependencyInjection
     {
         protected override void Load(ContainerBuilder builder)
         {
-            var httpClient = new HttpClient();
-
-            httpClient.DefaultRequestHeaders.Accept.Clear();
-            httpClient.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            builder.Register(c => httpClient).As(typeof(HttpClient)).InstancePerDependency();
+            builder.Register(c => new HttpClient()).As(typeof(HttpClient)).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(CreateGolfer<>)).As(typeof(ICreateEntity<>)).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(RetrieveGolfer<>)).As(typeof(IRetrieveEntity<>)).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(UpdateGolfer<>)).As(typeof(IUpdateEntity<>)).InstancePerLifetimeScope();
+            builder.RegisterType(typeof(DeleteGolfer)).As(typeof(IDeleteEntity)).InstancePerLifetimeScope();
         }
     }
 }

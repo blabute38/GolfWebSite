@@ -13,6 +13,5 @@ namespace Golf.RESTService.Client.Implementations.Golfers
             : base(httpClient, baseUrl, null)
         {
         }
-
     }
 }

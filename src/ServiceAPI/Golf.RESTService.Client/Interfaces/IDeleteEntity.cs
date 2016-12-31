@@ -1,6 +1,9 @@
-﻿namespace Golf.RESTService.Client.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace Golf.RESTService.Client.Interfaces
 {
-    interface IDeleteEntity<T>
+    public interface IDeleteEntity
     {
+        Task DeleteEntityAsync(int id);
     }
 }

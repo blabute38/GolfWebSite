@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Golf.Global.Implementations;
+using System;
 
 namespace Golf.ServiceLayer.Dto.Implementations
 {
-    public class GolferDto
+    public class GolferDto : Dto<int>
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        //public Class Class { get; set; }
-        //public DateTime? Birthdate { get; set; }
+        public Class Class { get; set; }
+        public DateTime? Birthdate { get; set; }
     }
 }

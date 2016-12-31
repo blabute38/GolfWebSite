@@ -43,11 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\Class.cs" />
+    <Compile Include="Implementations\HttpClient.EntensionMethods.cs" />
     <Compile Include="Implementations\Par.cs" />
+    <Compile Include="Implementations\StringBuilder.ExtensionMethod.cs" />
     <Compile Include="Implementations\Tee.cs" />
     <Compile Include="Implementations\UrlEncoder.cs" />
     <Compile Include="Interfaces\IConnectionString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementations\String.ExtensionMethods.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,6 @@
 ﻿using Golf.Global.Implementations;
 using Golf.RESTService.Client.Interfaces;
+using Golf.ServiceLayer.Dto.Implementations;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace Golf.RESTService.Client.Implementations.Generic
 {
     public class RetrieveEntity<T> : IRetrieveEntity<T>, IDisposable
+        where T: BaseDto
     {
         private readonly HttpClient _httpClient;
         private readonly string _baseUrl;
@@ -39,12 +41,12 @@ namespace Golf.RESTService.Client.Implementations.Generic
             _httpClient.Dispose();
         }
 
-        public async Task<T> GetEntityAsync()
+        public async Task<T> RetrieveEntityAsync(int id)
         {
             var url = new UrlEncoder(_baseUrl)
-                .AddToQueryString(_urlArgs);
+                .AddPath(id.ToString());
 
-            var response = await _httpClient.GetAsync(url.ToString());
+            var response = await _httpClient.Clear().GetAsync(url.ToString());
 
             if (response.IsSuccessStatusCode)
             {
@@ -56,12 +58,12 @@ namespace Golf.RESTService.Client.Implementations.Generic
             return default(T);
         }
 
-        public async Task<List<T>> GetEntitiesAsync()
+        public async Task<IEnumerable<T>> RetrieveEntitiesAsync()
         {
             var url = new UrlEncoder(_baseUrl)
                 .AddToQueryString(_urlArgs);
 
-            var response = await _httpClient.GetAsync(url.ToString());
+            var response = await _httpClient.Clear().GetAsync(url.ToString());
 
             if (response.IsSuccessStatusCode)
             {

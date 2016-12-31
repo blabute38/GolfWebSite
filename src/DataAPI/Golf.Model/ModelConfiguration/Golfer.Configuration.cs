@@ -16,6 +16,9 @@ namespace Golf.Model.Mapping
             Property(x => x.LastName)
                 .IsRequired()
                 .HasMaxLength(20);
+
+            //Property(x => x.Birthdate)
+            //    .IsOptional();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Golf.MVCApplication.Configuration;
 using Golf.RESTService.Client.DependencyInjection;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -11,6 +12,7 @@ namespace Golf.MVCApplication
     {
         protected void Application_Start()
         {
+            AutoMapperConfiguration.Configure();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

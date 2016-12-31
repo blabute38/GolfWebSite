@@ -1,6 +1,9 @@
-﻿namespace Golf.RESTService.Client.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace Golf.RESTService.Client.Interfaces
 {
-    interface IUpdateEntity<T>
+    public interface IUpdateEntity<T>
     {
+        Task<T> UpdateEntityAsync(int id, T entity);
     }
 }
