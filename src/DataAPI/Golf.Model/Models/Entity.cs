@@ -1,4 +1,5 @@
 ﻿using Golf.Model.Interfaces;
+using System;
 
 namespace Golf.Model.Models
 {

@@ -1,8 +1,7 @@
 ﻿using Golf.Global.Implementations;
-using Golf.Model.Models;
 using System;
 
-namespace Golf.Model
+namespace Golf.Model.Models
 {
     public class Golfer : Entity<int>
     {

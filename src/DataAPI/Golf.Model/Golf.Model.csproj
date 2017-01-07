@@ -97,15 +97,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbContexts\GolfCourseContext.cs" />
     <Compile Include="DbContexts\_BaseContext.cs" />
     <Compile Include="DbContexts\GolferContext.cs" />
     <Compile Include="DbContexts\IdentityContext.cs" />
     <Compile Include="DependencyInjection\GolfModelModule.cs" />
     <Compile Include="Interfaces\IAuditableEntity.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Migrations\GolfCourseContext.Configuration.cs" />
     <Compile Include="Migrations\_BaseContext.Configuration.cs" />
     <Compile Include="Migrations\GolferContext.Configuration.cs" />
     <Compile Include="ModelConfiguration\AuditableEntity.Configuration.cs" />
+    <Compile Include="ModelConfiguration\_Base.Configuration.cs" />
+    <Compile Include="ModelConfiguration\GolfCourse.Configuration.cs" />
     <Compile Include="ModelConfiguration\Golfer.Configuration.cs" />
     <Compile Include="Models\AuditableEntity.cs" />
     <Compile Include="Models\Entity.cs" />

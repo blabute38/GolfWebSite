@@ -1,14 +1,11 @@
-﻿using Golf.Model;
-using System.Data.Entity.ModelConfiguration;
+﻿using Golf.Model.Models;
 
-namespace Golf.Model.Mapping
+namespace Golf.Model.ModelConfiguration
 {
-    public class GolferConfiguration : EntityTypeConfiguration<Golfer>
+    public class GolferConfiguration : BaseConfiguration<Golfer, int>
     {
         public GolferConfiguration()
         {
-            HasKey(x => x.Id);
-
             Property(x => x.FirstName)
                 .IsRequired()
                 .HasMaxLength(20);
@@ -16,9 +13,6 @@ namespace Golf.Model.Mapping
             Property(x => x.LastName)
                 .IsRequired()
                 .HasMaxLength(20);
-
-            //Property(x => x.Birthdate)
-            //    .IsOptional();
         }
     }
 }

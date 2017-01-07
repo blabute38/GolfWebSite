@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Golf.Model;
+using Golf.Model.Models;
 using Golf.ServiceLayer.Dto.Implementations;
-using System.Collections.Generic;
 
 namespace Golf.RESTService.Configuration
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Golf.ServiceLayer.Interfaces;
-using Golf.Model;
+using Golf.Model.Models;
 using System.Web.Http;
 using System;
 using Golf.ServiceLayer.Dto.Implementations;

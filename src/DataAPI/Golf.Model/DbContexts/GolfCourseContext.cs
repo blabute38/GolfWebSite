@@ -5,19 +5,19 @@ using Golf.Model.ModelConfiguration;
 
 namespace Golf.Model.DbContexts
 {
-    public class GolferContext : BaseContext
+    public class GolfCourseContext : BaseContext
     {
-        public GolferContext() : base()
+        public GolfCourseContext() : base()
         {
             Database.SetInitializer(
-                new MigrateDatabaseToLatestVersion<GolferContext, GolferContextConfiguration>(databaseName));
+                new MigrateDatabaseToLatestVersion<GolfCourseContext, GolfCourseContextConfiguration>(databaseName));
         }
 
-        public DbSet<Golfer> Golfers { get; set; }
+        public DbSet<GolfCourse> GolfCourses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new GolferConfiguration());
+            modelBuilder.Configurations.Add(new GolfCourseConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

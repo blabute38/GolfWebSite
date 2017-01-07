@@ -1,4 +1,4 @@
-﻿using Golf.Model;
+﻿using Golf.Model.Models;
 
 namespace Golf.Repository.Interfaces
 {
