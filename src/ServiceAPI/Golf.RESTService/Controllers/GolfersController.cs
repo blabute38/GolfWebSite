@@ -1,58 +1,80 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
 using Golf.ServiceLayer.Interfaces;
-using Golf.Model;
+using Golf.Model.Models;
+using System.Web.Http;
+using System;
+using Golf.ServiceLayer.Dto.Implementations;
+using AutoMapper;
+using System.Net.Http;
+using System.Web.Http.Results;
+using Newtonsoft.Json;
+using System.Text;
+using System.Net;
 
 namespace Golf.RESTService.Controllers
 {
-    [Route("api/[controller]")]
-    public class GolfersController : Controller
+    public class GolfersController : ApiController
     {
         IGolferService _golferService;
 
         public GolfersController(IGolferService golferService)
         {
+            if (golferService == null)
+            {
+                throw new ArgumentNullException(nameof(golferService));
+            }
             _golferService = golferService;
         }
 
-        [HttpGet]
-        public IEnumerable<Golfer> Get()
+        public JsonResult<IEnumerable<GolferDto>> Get()
         {
-            return _golferService.GetAll();
+            var golfers = _golferService.GetAll();
+
+            return Json(
+                Mapper.Map<IEnumerable<GolferDto>>(golfers),
+                new JsonSerializerSettings(),
+                Encoding.UTF8
+            );
         }
 
-        [HttpGet("{id}")]
-        public Golfer Get(int id)
+        public JsonResult<GolferDto> Get(int id)
         {
-            return _golferService.GetById(id);
+            var golfer = _golferService.GetById(id);
+
+            return Json(Mapper.Map<GolferDto>(golfer), new JsonSerializerSettings(), Encoding.UTF8);
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]Golfer golfer)
+        // POST api/golfers
+        public HttpResponseMessage Post([FromBody]GolferDto golferDto)
         {
+            var golfer = Mapper.Map<Golfer>(golferDto);
+
             _golferService.Create(golfer);
+
+            return new HttpResponseMessage(HttpStatusCode.Created);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Golfer golfer)
+        // PUT api/golfers/5
+        public JsonResult<GolferDto> Put(int id, [FromBody]GolferDto golfer)
         {
             var golferToUpdate = _golferService.GetById(id);
 
-            golferToUpdate.FirstName = golfer.FirstName;
-            golferToUpdate.LastName = golfer.LastName;
+            golferToUpdate = Mapper.Map(golfer, golferToUpdate);
+            golferToUpdate.Id = id;
 
             _golferService.Update(golferToUpdate);
+
+            return Json(Mapper.Map<GolferDto>(golferToUpdate), new JsonSerializerSettings(), Encoding.UTF8);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE api/golfers/5
+        public HttpResponseMessage Delete(int id)
         {
             var golferToDelete = _golferService.GetById(id);
 
             _golferService.Delete(golferToDelete);
+
+            return new HttpResponseMessage(HttpStatusCode.NoContent);
         }
     }
 }

@@ -7,42 +7,49 @@ using System.Linq;
 
 namespace Golf.Repository.Implementations
 {
-    public abstract class GenericRepository<T> : IGenericRepository<T>
-      where T : BaseEntity
+    public abstract class GenericRepository<S, T> : IGenericRepository<S>
+      where S : Entity<T>
+      where T : IComparable
     {
         protected DbContext _dbContext;
-        protected readonly IDbSet<T> _dbSet;
+        protected readonly IDbSet<S> _dbSet;
 
         public GenericRepository(DbContext context)
         {
             _dbContext = context;
-            _dbSet = context.Set<T>();
+            _dbSet = context.Set<S>();
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IEnumerable<S> GetAll()
         {
-            return _dbSet.AsEnumerable<T>();
+            return _dbSet.AsEnumerable<S>();
         }
 
-        public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        public IEnumerable<S> FindBy(System.Linq.Expressions.Expression<Func<S, bool>> predicate)
         {
-            IEnumerable<T> query = _dbSet.Where(predicate).AsEnumerable();
+            IEnumerable<S> query = _dbSet.Where(predicate).AsEnumerable();
             return query;
         }
 
-        public virtual T Add(T entity)
+        public virtual S Add(S entity)
         {
             return _dbSet.Add(entity);
         }
 
-        public virtual T Delete(T entity)
+        public virtual S Delete(S entity)
         {
             return _dbSet.Remove(entity);
         }
 
-        public virtual void Edit(T entity)
+        public virtual void Edit(S entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
+        }
+
+        // had to use CompareTo rather than == because of generic id attribute
+        public S GetById(T id)
+        {
+            return _dbSet.Where(x => x.Id.CompareTo(id) == 0).FirstOrDefault();
         }
 
         public virtual void Save()

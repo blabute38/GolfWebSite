@@ -1,0 +1,78 @@
+﻿@model Golf.ViewModels.Golfers.GolferSearchViewModel
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Golfers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        Find by name: @Html.TextBox("SearchString", Model.SearchString)
+        <br />
+        @*Class: @Html.EnumDropDownListFor(x => x.ClassSearch, new { @class = "form-control" })*@
+        Class: @Html.EnumDropDownListFor(x => x.ClassSearch)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("First Name", "Index", new { sortOrder = Model.FirstNameSortOrder })
+        </th>
+        <th>
+            @Html.ActionLink("Last Name", "Index", new { sortOrder = Model.LastNameSortOrder })
+        </th>
+        <th>
+            @Html.ActionLink("Birth Date", "Index", new { sortOrder = Model.BirthdateSortOrder })
+        </th>
+        <th>
+            @Html.ActionLink("Class", "Index", new { sortOrder = Model.ClassSearch })
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model.Golfers == null || !Model.Golfers.Any())
+    {
+        <tr><td>There are no golfers to display.</td></tr>
+    }
+    else
+    {
+        foreach (var golfer in Model.Golfers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => golfer.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => golfer.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => golfer.Birthdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => golfer.Class)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = golfer.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = golfer.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = golfer.Id })
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<br />
+Page @(Model.Golfers.PageCount < Model.Golfers.PageNumber ? 0 : Model.Golfers.PageNumber) of @Model.Golfers.PageCount
+
+@Html.PagedListPager(Model.Golfers, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

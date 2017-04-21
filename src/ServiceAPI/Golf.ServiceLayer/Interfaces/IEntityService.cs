@@ -1,5 +1,6 @@
 ﻿using Golf.Model.Models;
 using System.Collections.Generic;
+using System.Net.Http;
 
 namespace Golf.ServiceLayer.Interfaces
 {

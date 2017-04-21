@@ -1,4 +1,4 @@
-﻿using Golf.Model;
+﻿using Golf.Model.Models;
 using Golf.Repository.Interfaces;
 using Golf.ServiceLayer.Interfaces;
 
