@@ -17,16 +17,12 @@ namespace Golf.RESTService.Client.Implementations.Generic
 
         public CreateEntity(HttpClient httpClient, string baseUrl)
         {
-            if (httpClient == null)
-            {
-                throw new ArgumentNullException(nameof(httpClient));
-            }
             if (string.IsNullOrWhiteSpace(baseUrl))
             {
                 throw new ArgumentNullException(nameof(baseUrl));
             }
 
-            _httpClient = httpClient;
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             _baseUrl = baseUrl;
         }
 
